@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using BlogApi.Data;
 using BlogApi.Models;
@@ -20,14 +21,14 @@ namespace BlogApi.Controllers
              IEnumerable<Blog> blogList = _db.Blog;
              return Ok(blogList);
          }
-         [HttpPost]
-         public ActionResult Create(Blog blog)
+         [HttpPost("{id}")]
+         public ActionResult Create(Blog blog,int id)
          {
              var create = _db.Blog.Add(blog);
              _db.SaveChanges();
              return Ok(blog);
-         }    
-         
+            
+         }            
     }
 
     }

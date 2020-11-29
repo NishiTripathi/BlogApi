@@ -2,12 +2,12 @@
 
 namespace BlogApi.Migrations
 {
-    public partial class AddingDb : Migration
+    public partial class UpdatingBlogDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "User",
+                name: "Users",
                 columns: table => new
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
@@ -19,7 +19,7 @@ namespace BlogApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.UserId);
+                    table.PrimaryKey("PK_Users", x => x.UserId);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,23 +30,23 @@ namespace BlogApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true)
+                    userId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Blog", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Blog_User_UserId",
-                        column: x => x.UserId,
-                        principalTable: "User",
+                        name: "FK_Blog_Users_userId",
+                        column: x => x.userId,
+                        principalTable: "Users",
                         principalColumn: "UserId",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Blog_UserId",
+                name: "IX_Blog_userId",
                 table: "Blog",
-                column: "UserId");
+                column: "userId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -55,7 +55,7 @@ namespace BlogApi.Migrations
                 name: "Blog");
 
             migrationBuilder.DropTable(
-                name: "User");
+                name: "Users");
         }
     }
 }

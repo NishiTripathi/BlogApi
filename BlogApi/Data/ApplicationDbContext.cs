@@ -11,6 +11,5 @@ namespace BlogApi.Data
         }
          public DbSet<Blog> Blog {get;set;}
          public DbSet<User> Users{get;set;}
-
     }
 }
