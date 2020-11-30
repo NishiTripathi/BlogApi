@@ -21,10 +21,14 @@ namespace BlogApi.Controllers
              IEnumerable<Blog> blogList = _db.Blog;
              return Ok(blogList);
          }
-         [HttpPost("{id}")]
-         public ActionResult Create(Blog blog,int id)
+         [HttpPost]
+         public ActionResult Create(Blog blog)//,[FromBody]int id)
          {
-             var create = _db.Blog.Add(blog);
+            // var UserId = new User{UserId=id};
+            
+             var UserId = new Blog{userId=1};
+              _db.Attach(UserId);
+             _db.Blog.Add(blog);            
              _db.SaveChanges();
              return Ok(blog);
             

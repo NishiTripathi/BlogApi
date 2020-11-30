@@ -14,7 +14,7 @@ namespace BlogApi.Models
         [Required]
         public int userId {get;set;}
         [ForeignKey("userId")]
-        public User User{get;set;}
+        public virtual User User{get;set;}
         
     }
 }

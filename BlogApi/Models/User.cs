@@ -14,6 +14,7 @@ namespace BlogApi.Models
         public string email {get;set;}
         [Required]
         public string password{get;set;}
+        public virtual Blog Blog{get;set;}
     }
     
 }
